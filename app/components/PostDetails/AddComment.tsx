@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -15,9 +15,6 @@ export default function AddComment({ id }: { id: string }) {
 	const [isDisabled, setIsDisabled] = useState(false);
 	const router = useRouter();
 	let commentToastId = "Comment";
-
-	// Access the client
-	const queryClient = useQueryClient();
 
 	// Create a post
 	const { mutate } = useMutation(

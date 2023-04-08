@@ -11,8 +11,7 @@ export default function DeleteComment({ commentId }: { commentId: string }) {
 
 	// Delete Comment
 	const { mutate } = useMutation(
-		async (id: string) =>
-			await axios.delete("/api/posts/deleteComment", { data: { id } }),
+		async (id: string) => await axios.delete(`/api/posts/deleteComment/${id}`),
 		{
 			onError: (error) => {
 				toast.error("Error deleting that comment", { id: deleteToastId });
