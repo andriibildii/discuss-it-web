@@ -20,12 +20,10 @@ export default function CreatePost() {
 				title,
 			}),
 		{
-			onError: (error: AxiosError) => {
-				const errorMessage: string | undefined = error.response?.statusText;
-				errorMessage &&
-					toast.error(errorMessage, {
-						id: toastPostID,
-					});
+			onError: (error) => {
+				if (error instanceof AxiosError) {
+					toast.error(error?.response?.data.message, { id: toastPostID });
+				}
 				setIsDisabled(false);
 			},
 			onSuccess: (data) => {
