@@ -20,6 +20,10 @@ export default function Comment({
     commentCreator,
     commentId,
 }: ICommentProps) {
+    const date = new Date(createdAt);
+    const options = { timeZone: 'Europe/Kiev' };
+    const formattedDate = date.toLocaleString('uk-UA', options);
+
     return (
         <div className='my-6 rounded-md bg-white p-8'>
             <div className='flex justify-between'>
@@ -34,7 +38,7 @@ export default function Comment({
                     <h3 className='font-bold'>{name}</h3>
                 </div>
                 <div>
-                    <h2 className='text-sm'>{createdAt}</h2>
+                    <h2 className='text-sm'>{formattedDate}</h2>
                 </div>
             </div>
             <div className='py-4'>{comment}</div>
