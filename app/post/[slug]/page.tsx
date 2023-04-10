@@ -4,6 +4,7 @@ import Comment from '@/app/components/PostDetails/Comment';
 import { IPosts } from '@/app/types/postsTypes';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
+import type { Metadata } from 'next';
 
 interface IParams {
     params: {
@@ -16,8 +17,15 @@ async function fetchDetails(slug: string) {
         `${process.env.NEXTAUTH_URL}/api/posts/${slug}`,
         { cache: 'no-store' }
     );
-
     return response.json();
+}
+
+export async function generateMetadata({ params }: IParams): Promise<Metadata> {
+    const post = await fetchDetails(params.slug);
+    return {
+        title: `${post.user.name}'s post`,
+        description: post.title,
+    };
 }
 
 export default async function PostDetail({ params }: IParams) {

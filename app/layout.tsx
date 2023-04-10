@@ -1,6 +1,7 @@
 import { Poppins } from 'next/font/google';
 import Nav from './components/NavBar/Nav';
 import QueryWrapper from './components/QueryWrapper';
+import type { Metadata } from 'next';
 import './globals.css';
 
 const poppins = Poppins({
@@ -10,7 +11,7 @@ const poppins = Poppins({
     display: 'swap',
 });
 
-export const metadata = {
+export const metadata: Metadata = {
     title: 'DiscussIt',
     description: 'Discuss your topics',
 };
