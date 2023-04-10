@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
 
 export default function CreatePost() {
     const [title, setTitle] = useState('');

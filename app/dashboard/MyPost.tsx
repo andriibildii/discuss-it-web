@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
@@ -26,6 +27,7 @@ export default function MyPost({
 }: IMyPostProps) {
     const [toggle, setToggle] = useState(false);
     const queryClient = useQueryClient();
+    const router = useRouter();
     let deleteToastID = 'Dashboard';
 
     const { mutate } = useMutation(
@@ -35,8 +37,8 @@ export default function MyPost({
                 toast.error('Error deleting that post', { id: deleteToastID });
             },
             onSuccess: (data) => {
-                console.log(data);
                 queryClient.invalidateQueries(['my-posts']);
+                router.refresh();
                 toast.success('Post has been deleted', {
                     id: deleteToastID,
                 });
