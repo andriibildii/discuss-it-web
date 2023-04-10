@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import MyPost from "./MyPost";
-import { AuthPosts } from "../types/AuthPosts";
+import { IUser } from "../types/postsTypes";
 
 const fetchAuthPosts = async () => {
 	const response = await axios.get("/api/posts/authPosts");
@@ -11,23 +11,25 @@ const fetchAuthPosts = async () => {
 };
 
 export default function MyPosts() {
-	const { data, isLoading } = useQuery<AuthPosts>({
+	const { data, isLoading } = useQuery<IUser>({
 		queryFn: fetchAuthPosts,
 		queryKey: ["auth-posts"],
 	});
 
 	if (isLoading) return <h1>Posts are loading...</h1>;
 
+	console.log(data);
+
 	return (
 		<div>
-			{data?.post?.map((p) => (
+			{data?.post?.map((myPost) => (
 				<MyPost
-					key={p.id}
-					id={p.id}
-					avatar={data.image}
+					key={myPost.id}
+					id={myPost.id}
+					image={data.image}
 					name={data.name}
-					title={p.title}
-					comments={p.comments}
+					title={myPost.title}
+					comments={myPost.comments}
 				/>
 			))}
 		</div>

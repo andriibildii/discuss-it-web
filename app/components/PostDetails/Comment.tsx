@@ -2,7 +2,7 @@ import Image from "next/image";
 import DeleteComment from "./DeleteComment";
 
 interface ICommentProps {
-	avatar: string | undefined;
+	image: string | undefined;
 	name: string | undefined;
 	createdAt: string;
 	comment: string;
@@ -12,7 +12,7 @@ interface ICommentProps {
 }
 
 export default function Comment({
-	avatar,
+	image,
 	name,
 	createdAt,
 	comment,
@@ -28,7 +28,7 @@ export default function Comment({
 						className="rounded-full"
 						width={24}
 						height={24}
-						src={avatar ? avatar : ""}
+						src={image ? image : ""}
 						alt="avatar"
 					/>
 					<h3 className="font-bold">{name}</h3>

@@ -1,6 +1,7 @@
 "use client";
+
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -16,9 +17,7 @@ export default function AddComment({ id }: { id: string }) {
 	const router = useRouter();
 	let commentToastId = "Comment";
 
-	// Create a post
 	const { mutate } = useMutation(
-		// Make a request
 		async (data: IMutateData) =>
 			await axios.post("/api/posts/addComment", { data }),
 		{

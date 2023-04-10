@@ -4,9 +4,10 @@ export interface IUser {
 	email: string;
 	emailVerified: boolean | null;
 	image: string;
+	post?: IPosts[];
 }
 
-export interface IComments {
+export interface IComment {
 	id: string;
 	message: string;
 	postId: string;
@@ -15,13 +16,13 @@ export interface IComments {
 	user?: IUser;
 }
 
-export interface IPost {
-	createdAt?: string;
+export interface IPosts {
 	id: string;
-	published: boolean;
-	title: string;
+	createdAt?: string;
 	updatedAt?: string;
-	user: IUser;
+	title: string;
+	published?: boolean;
 	userId?: string;
-	comments?: IComments[];
+	user?: IUser;
+	comments?: IComment[];
 }

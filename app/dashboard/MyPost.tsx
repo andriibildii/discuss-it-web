@@ -1,32 +1,29 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
-import Toggle from "./Toggle";
-
+import Image from "next/image";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import Toggle from "./Toggle";
+import { IComment } from "../types/postsTypes";
+import Link from "next/link";
 
-type EditProps = {
+interface IMyPostProps {
 	id: string;
-	avatar: string;
+	image: string;
 	name: string;
 	title: string;
-	comments?: {
-		id: string;
-		postId: string;
-		userId: string;
-	}[];
-};
+	comments?: IComment[];
+}
 
 export default function MyPost({
-	avatar,
+	id,
+	image,
 	name,
 	title,
 	comments,
-	id,
-}: EditProps) {
+}: IMyPostProps) {
 	const [toggle, setToggle] = useState(false);
 	const queryClient = useQueryClient();
 	let deleteToastID = "Dashboard";
@@ -54,16 +51,18 @@ export default function MyPost({
 		<>
 			<div className="bg-white my-8 p-8 rounded-lg ">
 				<div className="flex items-center gap-2">
-					<Image width={32} height={32} src={avatar} alt="avatar" />
+					<Image width={32} height={32} src={image} alt="avatar" />
 					<h3 className="font-bold text-gray-700">{name}</h3>
 				</div>
 				<div className="my-8 ">
 					<p className="break-all">{title}</p>
 				</div>
 				<div className="flex items-center gap-4 ">
-					<p className=" text-sm font-bold text-gray-700">
-						{comments?.length} Comments
-					</p>
+					<Link href={`/post/${id}`}>
+						<p className=" text-sm font-bold text-gray-700">
+							{comments?.length} Comments
+						</p>
+					</Link>
 					<button
 						onClick={(e) => {
 							e.stopPropagation();

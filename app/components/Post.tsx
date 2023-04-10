@@ -2,16 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { IComment } from "../types/postsTypes";
 
-type PostType = any;
+interface IPostProps {
+	id: string;
+	image: string | undefined;
+	name: string | undefined;
+	postTitle: string;
+	comments: IComment[] | undefined;
+}
 
 export default function Post({
-	avatar,
+	id,
+	image,
 	name,
 	postTitle,
-	id,
 	comments,
-}: PostType) {
+}: IPostProps) {
 	return (
 		<div className="bg-white my-8 p-8 rounded-lg">
 			<div className="flex items-center gap-2">
@@ -19,7 +26,7 @@ export default function Post({
 					className="rounded-full"
 					width={32}
 					height={32}
-					src={avatar ? avatar : ""}
+					src={image ? image : ""}
 					alt="avatar"
 				/>
 				<h3 className="font-bold text-gray-700">{name}</h3>

@@ -46,7 +46,7 @@ export default async function handler(
 
 			res.status(200).json(result);
 		} catch (err) {
-			res.status(403).json({ err: "Error has occured while making a post" });
+			res.status(403).json({ err: "Error has occurred while adding the comment" });
 		}
 	}
 }

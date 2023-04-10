@@ -4,11 +4,11 @@ import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface IUserImage {
+interface ILoggedProps {
 	image: string;
 }
 
-export default function Logged({ image }: IUserImage) {
+export default function Logged({ image }: ILoggedProps) {
 	return (
 		<li className="flex gap-8 items-center">
 			<button

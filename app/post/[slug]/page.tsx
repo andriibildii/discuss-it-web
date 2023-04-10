@@ -1,14 +1,11 @@
-
 import Post from "@/app/components/Post";
-import AddComment from '@/app/components/PostDetails/AddComment';
-import Comment from '@/app/components/PostDetails/Comment';
-import { IPost } from "@/app/types/Posts";
-
+import AddComment from "@/app/components/PostDetails/AddComment";
+import Comment from "@/app/components/PostDetails/Comment";
+import { IPosts } from "@/app/types/postsTypes";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-
 import { getServerSession } from "next-auth";
 
-interface IUrl {
+interface IParams {
 	params: {
 		slug: string;
 	};
@@ -23,15 +20,15 @@ async function fetchDetails(slug: string) {
 	return response.json();
 }
 
-export default async function PostDetail(url: IUrl) {
-	const data: IPost = await fetchDetails(url.params.slug);
+export default async function PostDetail({ params }: IParams) {
+	const data: IPosts = await fetchDetails(params.slug);
 	const session = await getServerSession(authOptions);
 
 	return (
 		<div>
 			<Post
 				id={data?.id}
-				avatar={data?.user?.image}
+				image={data?.user?.image}
 				name={data?.user?.name}
 				postTitle={data?.title}
 				comments={data?.comments}
@@ -40,7 +37,7 @@ export default async function PostDetail(url: IUrl) {
 			{data?.comments?.map((comment) => (
 				<Comment
 					key={comment.id}
-					avatar={comment.user?.image}
+					image={comment.user?.image}
 					name={comment.user?.name}
 					createdAt={comment.createdAt}
 					comment={comment.message}

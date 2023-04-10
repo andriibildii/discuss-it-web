@@ -1,9 +1,9 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
+import axios from "axios";
 
 export default function DeleteComment({ commentId }: { commentId: string }) {
 	const router = useRouter();

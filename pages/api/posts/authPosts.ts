@@ -32,11 +32,10 @@ export default async function handler(
 					},
 				},
 			});
-
 			return res.status(200).json(data);
 		} catch (err) {
 			res.status(403).json({
-				err: "Error has occured while open the dashboardopen the dashboard",
+				err: "Error has occurred while open the dashboard",
 			});
 		}
 	}

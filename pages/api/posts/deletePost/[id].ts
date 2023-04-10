@@ -29,7 +29,7 @@ export default async function handler(
 
 			res.status(200).json(result);
 		} catch (err) {
-			res.status(403).json({ err: "Error has occured while deleting a post" });
+			res.status(403).json({ err: "Error has occurred while deleting the post" });
 		}
 	}
 }

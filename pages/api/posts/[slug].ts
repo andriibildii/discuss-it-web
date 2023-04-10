@@ -31,7 +31,7 @@ export default async function handler(
 			});
 			return res.status(200).json(data);
 		} catch (err) {
-			res.status(403).json({ err: "Error has occured while making a post" });
+			res.status(403).json({ err: "Error has occurred while getting the post" });
 		}
 	}
 }
