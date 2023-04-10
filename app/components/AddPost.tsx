@@ -30,7 +30,7 @@ export default function CreatePost() {
             },
             onSuccess: (data) => {
                 queryClient.invalidateQueries(['posts']);
-                toast.success('Post has been made 🔥', { id: toastPostID });
+                toast.success('Post has been made ✅', { id: toastPostID });
                 setTitle('');
                 setIsDisabled(false);
             },

@@ -30,11 +30,9 @@ export default async function handler(
         }
 
         if (!title.length) {
-            return res
-                .status(403)
-                .json({
-                    message: 'Please write something before we can post it.',
-                });
+            return res.status(403).json({
+                message: 'Please write something before adding a post',
+            });
         }
 
         //Create Post

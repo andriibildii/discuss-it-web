@@ -36,8 +36,10 @@ export default function MyPost({
             },
             onSuccess: (data) => {
                 console.log(data);
-                queryClient.invalidateQueries(['auth-posts']);
-                toast.success('Post has been deleted.', { id: deleteToastID });
+                queryClient.invalidateQueries(['my-posts']);
+                toast.success('Post has been deleted', {
+                    id: deleteToastID,
+                });
             },
         }
     );

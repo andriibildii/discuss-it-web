@@ -31,7 +31,9 @@ export default async function handler(
         }
 
         if (!title.length) {
-            return res.status(401).json({ message: 'Please enter some text' });
+            return res.status(401).json({
+                message: 'Please write something before adding a comment',
+            });
         }
 
         try {

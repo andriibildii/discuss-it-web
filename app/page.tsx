@@ -6,7 +6,6 @@ import Post from './components/Post';
 import AddPost from './components/AddPost';
 import { IPosts } from './types/postsTypes';
 
-//Fetch All posts
 const allPosts = async () => {
     const response = await axios.get('/api/posts/getPosts');
     return response.data;

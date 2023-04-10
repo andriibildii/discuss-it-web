@@ -13,7 +13,7 @@ const fetchAuthPosts = async () => {
 export default function MyPosts() {
     const { data, isLoading } = useQuery<IUser>({
         queryFn: fetchAuthPosts,
-        queryKey: ['auth-posts'],
+        queryKey: ['my-posts'],
     });
 
     if (isLoading) return <h1>Posts are loading...</h1>;

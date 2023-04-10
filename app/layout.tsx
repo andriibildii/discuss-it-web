@@ -1,6 +1,6 @@
 import { Poppins } from 'next/font/google';
 import Nav from './components/NavBar/Nav';
-import QueryWrapper from './QueryWrapper';
+import QueryWrapper from './components/QueryWrapper';
 import './globals.css';
 
 const poppins = Poppins({
