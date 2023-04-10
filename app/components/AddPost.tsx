@@ -4,10 +4,12 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
 import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/navigation';
 
 export default function CreatePost() {
     const [title, setTitle] = useState('');
     const [isDisabled, setIsDisabled] = useState(false);
+    const router = useRouter();
     let toastPostID = 'Post';
 
     // Access the client
@@ -30,7 +32,8 @@ export default function CreatePost() {
             },
             onSuccess: (data) => {
                 queryClient.invalidateQueries(['posts']);
-                toast.success('Post has been made ✅', { id: toastPostID });
+                router.refresh();
+                toast.success('Post has been made', { id: toastPostID });
                 setTitle('');
                 setIsDisabled(false);
             },

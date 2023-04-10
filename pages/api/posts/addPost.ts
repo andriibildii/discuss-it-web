@@ -31,7 +31,7 @@ export default async function handler(
 
         if (!title.length) {
             return res.status(403).json({
-                message: 'Please write something before adding a post',
+                message: 'Please write something before creating a post',
             });
         }
 

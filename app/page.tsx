@@ -1,35 +1,31 @@
-'use client';
-
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import Post from './components/Post';
+import axios from 'axios';
 import AddPost from './components/AddPost';
 import { IPosts } from './types/postsTypes';
 
-const allPosts = async () => {
-    const response = await axios.get('/api/posts/getPosts');
-    return response.data;
-};
-
-export default function Home() {
-    const { data } = useQuery<IPosts[]>({
-        queryFn: allPosts,
-        queryKey: ['posts'],
+async function getPosts() {
+    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/posts/getPosts`, {
+        cache: 'no-store',
     });
+    return res.json();
+}
+
+export default async function Home() {
+    const data: IPosts[] = await getPosts();
 
     return (
-        <div>
+        <main>
             <AddPost />
             {data?.map((post) => (
                 <Post
                     key={post.id}
-                    id={post.id}
-                    name={post.user?.name}
                     image={post.user?.image}
+                    name={post.user?.name}
                     postTitle={post.title}
+                    id={post.id}
                     comments={post.comments}
                 />
             ))}
-        </div>
+        </main>
     );
 }

@@ -30,7 +30,7 @@ export default function AddComment({ id }: { id: string }) {
                 setIsDisabled(false);
             },
             onSuccess: (data) => {
-                toast.success('Comment has been added ✅', {
+                toast.success('Comment has been added', {
                     id: commentToastId,
                 });
                 setTitle('');
